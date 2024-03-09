@@ -8,11 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
-  ngOnInit(): void {
-    
-  }
+  eye:boolean= false;
   errMsg: string = '';
   isClicked: boolean = false;
   loginForm: FormGroup = new FormGroup({
@@ -23,6 +21,9 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
+  toggleEye(){
+    return this.eye= !this.eye
+  }
   loginFunction() {
     this.isClicked = true;
     console.log(this.loginForm.value);

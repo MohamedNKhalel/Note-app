@@ -10,7 +10,7 @@
                 <form (ngSubmit)="loginFunction()" [formGroup]="loginForm">
                     <div class="mb-4">
                         <label for="email">Email:</label>
-                        <input #emailInput formControlName="email" class="form-control" id="email" type="text" placeholder="Enter your email">
+                        <input #emailInput formControlName="email" class="form-control" id="email" type="email" placeholder="Enter your email">
                         <div *ngIf="loginForm.get('email')?.errors&&(loginForm.get('email')?.touched || emailInput.value.length>0)"class="alert alert-danger">
                             <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</p>
                             <p *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email</p>
@@ -18,9 +18,13 @@
                     </div>
                     <div class="mb-4">
                         <label for="password">Password:</label>
-                        <input #passInput formControlName="password" class="form-control" id="password" type="text" placeholder="Enter your password">
+                        <div class="position-relative">
+                            <input #passInput formControlName="password" class="form-control" id="password" [type]="eye?'text':'password'" placeholder="Enter your password">
+                            <i (click)="toggleEye()" *ngIf="!eye && passInput.value.length >0" class="fa fa-eye eye"></i>    
+                            <i (click)="toggleEye()" *ngIf="eye && passInput.value.length >0" class="fa fa-eye-slash eye"></i>
+                        </div>
                         <div *ngIf="loginForm.get('password')?.errors&&(loginForm.get('password')?.touched || passInput.value.length>0)"class="alert alert-danger">
-                            <p *ngIf="loginForm.get('password')?.errors?.['required']">Email is required</p>
+                            <p *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</p>
                             <p *ngIf="loginForm.get('password')?.errors?.['pattern']">Password must start with a capital letter</p>
                         </div>
                     </div>

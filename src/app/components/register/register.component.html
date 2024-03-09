@@ -18,7 +18,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="name">Email:</label>
-                        <input #emailInput formControlName="email" class="form-control" type="text" placeholder="Enter your email">
+                        <input #emailInput formControlName="email" class="form-control" type="email"  placeholder="Enter your email">
                         <div *ngIf="registerForm.get('email')?.errors&&(registerForm.get('email')?.touched || emailInput.value.length>0)" class="alert alert-danger">
                             <p *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</p>
                             <p *ngIf="registerForm.get('email')?.errors?.['email']">Enter a valid email</p>
@@ -26,9 +26,13 @@
                     </div>
                     <div class="mb-4">
                         <label for="name">Password:</label>
-                        <input #passInput formControlName="password" class="form-control" type="text" placeholder="Enter your password">
+                        <div class="position-relative">
+                            <input #passInput formControlName="password" class="form-control" [type]="eye?'text':'password'" placeholder="Enter your password">
+                            <i (click)="toggleEye()" *ngIf="!eye && passInput.value.length >0" class="fa fa-eye eye"></i>
+                            <i (click)="toggleEye()" *ngIf="eye && passInput.value.length >0" class="fa fa-eye-slash eye"></i>
+                        </div>
                         <div *ngIf="registerForm.get('password')?.errors&&(registerForm.get('password')?.touched || passInput.value.length>0)" class="alert alert-danger">
-                            <p *ngIf="registerForm.get('password')?.errors?.['required']">Name is required</p>
+                            <p *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</p>
                             <p *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum password length is 6 </p>
                             <p *ngIf="registerForm.get('password')?.errors?.['pattern']">Password must start with capital letter</p>
                         </div>

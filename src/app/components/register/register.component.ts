@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent {
   isClicked:boolean=false;
   errMsg:string=''
+  eye:boolean =false;
   constructor(private _AuthService:AuthService,private _Router:Router){}
   registerForm:FormGroup= new FormGroup({
     name: new FormControl(null,[Validators.required,Validators.minLength(4)]),
@@ -20,6 +21,10 @@ export class RegisterComponent {
     phone: new FormControl(null,[Validators.required,Validators.pattern(/^01[0125][0-9]{8}\s*$/)]),
   })
 
+
+  toggleEye(){
+    return this.eye= !this.eye
+  }
   registerFunction(){
     this.isClicked=true
     this._AuthService.registerApi(this.registerForm.value).subscribe({

@@ -24,3 +24,10 @@ body{
 .logo{
 width: 30px;
 }
+.eye{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
