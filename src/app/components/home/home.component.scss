@@ -1,0 +1,51 @@
+.note{
+    background-color: white;
+    padding: 12px;
+    border-radius: 10px;
+    color: black;
+    height: 120px;
+    border: solid 2px black;
+    overflow: auto;
+}
+::-webkit-scrollbar{
+    background-color: #3f7274;
+    border-radius: 15px; 
+    width: 12px; /* for vertical scrollbars */
+    height: 12px; /* for horizontal scrollbars */
+
+}
+::-webkit-scrollbar-track {
+    background-color: #3f7274;; /* track color */
+    border-radius: 6px; 
+
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: black;
+    width: 8px;
+    border-radius: 10px;
+    
+}
+.setting{
+    right: 0;
+    top: 75%;
+}
+.main-card{
+    background-color: black;
+    border: gray solid 3px;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50%;
+    color: white;
+}
+textarea{
+    resize: none;
+}
+.add-note{
+    background-color: rgba(0,0,0,.5);
+}
+@media screen and (max-width:768px) {
+    .main-card{
+        width: 90%;
+    }
+}

@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&family=Roboto+Slab:wght@300&display=swap');
+:root{
+    --main-font:'Croissant One', cursive,'Roboto Slab', serif;
+}
+body{
+    font-family: var(--main-font);
+}
+.bg-main{
+    background-color:#73ABAD ;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    transition: all .5s;
+    &:hover{
+        background-color: #3f7274;
+        color: white;
+    }
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.logo{
+width: 30px;
+}

@@ -1,0 +1,73 @@
+<section>
+    <div>
+        <input [(ngModel)]="searchWord" class="form-control  my-4" type="text" placeholder="Search for note...">
+    </div>
+    <div class="my-2">
+        <button (click)="showAddNote=true"  class="bg-main d-block ms-auto ">Add Note</button>
+        <div class="row my-3 g-4" >
+            <div class="col-md-3" *ngFor="let item of allNotes | search:searchWord ">
+                <div class="note">
+                    <div class="d-flex position-relative justify-content-between align-items-center cursor-pointer">
+                        <h2 class="h4 fw-light">{{item.title}}</h2>
+                        <i  class="fa-solid fa-ellipsis-vertical fa-xl" data-bs-toggle="dropdown" ></i>  
+                        <ul class="dropdown-menu">
+                            <li (click)="showEditNote=true" ><a class="dropdown-item" (click)="getNoteId(item._id)">Edit</a></li>
+                            <li (click)="deleteNote(item._id)" ><a class="dropdown-item">Delete</a></li>
+                        </ul>
+                    </div>
+                    <h3 class="h5  ">{{item.content}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div (click)="showAddNote=false" *ngIf="showAddNote" class="add-note position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
+        <div class="main-card" (click)="stop($event)">
+            <div class="d-flex justify-content-between my-2 pe-3 cursor-pointer">
+                <h2 class="text-center">ADD NOTE</h2>
+                <i (click)="showAddNote=false" class="fa fa-x fa-2x"></i>
+            </div>
+            <form class="mt-2" (ngSubmit)="addNote()" [formGroup]="noteForm">
+                <div class="mb-4">
+                    <label class="mb-1" for="title">Title:</label>
+                    <input #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
+                    <div *ngIf="noteForm.get('title')?.errors && (noteForm.get('title')?.touched || title.value.length>0)" class="mt-1 alert alert-danger">
+                        <p *ngIf="noteForm.get('title')?.errors?.['required']">Title is required</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="mb-1" for="content">Content:</label>
+                    <textarea #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
+                    <div *ngIf="noteForm.get('content')?.errors && (noteForm.get('content')?.touched || content.value.length>0)" class="mt-1 alert alert-danger">
+                        <p *ngIf="noteForm.get('content')?.errors?.['required']">Enter some content</p>
+                    </div>
+                </div>
+                <button [disabled]="noteForm.invalid" type="submit" class="bg-main w-100"><span *ngIf="!isClicked">Add Note</span> <i *ngIf="isClicked" class="fa fa-spin fa-spinner ms-1"></i></button>
+            </form>
+        </div>
+    </div>
+    <div (click)="showEditNote=false" *ngIf="showEditNote" class="add-note position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
+        <div class="main-card" (click)="stop($event)">
+            <div class="d-flex justify-content-between my-2 pe-3 cursor-pointer">
+                <h2 class="text-center">EDIT NOTE</h2>
+                <i (click)="showEditNote=false" class="fa fa-x fa-2x"></i>
+            </div>
+            <form class="mt-2" (ngSubmit)="editNote()" [formGroup]="noteForm">
+                <div class="mb-4">
+                    <label class="mb-1" for="title">Title:</label>
+                    <input #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
+                    <div *ngIf="noteForm.get('title')?.errors && (noteForm.get('title')?.touched || title.value.length>0)" class="mt-1 alert alert-danger">
+                        <p *ngIf="noteForm.get('title')?.errors?.['required']">Title is required</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="mb-1" for="content">Content:</label>
+                    <textarea #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
+                    <div *ngIf="noteForm.get('content')?.errors && (noteForm.get('content')?.touched || content.value.length>0)" class="mt-1 alert alert-danger">
+                        <p *ngIf="noteForm.get('content')?.errors?.['required']">Enter some content</p>
+                    </div>
+                </div>
+                <button [disabled]="noteForm.invalid" type="submit" class="bg-main w-100"><span *ngIf="!isClicked">Confirm</span> <i *ngIf="isClicked" class="fa fa-spin fa-spinner ms-1"></i></button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+<section class="container w-75">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div>
+                <img class="w-100" src="./assets/imgs/Login-rafiki.svg" alt="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <form (ngSubmit)="loginFunction()" [formGroup]="loginForm">
+                    <div class="mb-4">
+                        <label for="email">Email:</label>
+                        <input #emailInput formControlName="email" class="form-control" id="email" type="text" placeholder="Enter your email">
+                        <div *ngIf="loginForm.get('email')?.errors&&(loginForm.get('email')?.touched || emailInput.value.length>0)"class="alert alert-danger">
+                            <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</p>
+                            <p *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password">Password:</label>
+                        <input #passInput formControlName="password" class="form-control" id="password" type="text" placeholder="Enter your password">
+                        <div *ngIf="loginForm.get('password')?.errors&&(loginForm.get('password')?.touched || passInput.value.length>0)"class="alert alert-danger">
+                            <p *ngIf="loginForm.get('password')?.errors?.['required']">Email is required</p>
+                            <p *ngIf="loginForm.get('password')?.errors?.['pattern']">Password must start with a capital letter</p>
+                        </div>
+                    </div>
+                    <button [disabled]="loginForm.invalid" type="submit" class="bg-main w-100"><span *ngIf="!isClicked">Login</span> <i *ngIf="isClicked" class="fa fa-spin fa-spinner ms-1"></i></button>
+                </form>
+                <p *ngIf="errMsg" class="alert alert-danger text-uppercase mt-1 fs-4">{{errMsg}}</p>
+            </div>
+        </div>
+    </div>
+</section>
