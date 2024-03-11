@@ -15,8 +15,6 @@ export class NavblankComponent {
 
   @HostListener('window:scroll')
   onScroll(){
-    console.log(scrollY);
-    
     if(window.scrollY > 100){
       this._Renderer2.addClass(this.navElement.nativeElement ,'shadow')
 

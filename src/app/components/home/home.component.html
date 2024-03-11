@@ -29,14 +29,14 @@
             <form class="mt-2" (ngSubmit)="addNote()" [formGroup]="noteForm">
                 <div class="mb-4">
                     <label class="mb-1" for="title">Title:</label>
-                    <input #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
+                    <input [(ngModel)]="addTitleValue" #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
                     <div *ngIf="noteForm.get('title')?.errors && (noteForm.get('title')?.touched || title.value.length>0)" class="mt-1 alert alert-danger">
                         <p *ngIf="noteForm.get('title')?.errors?.['required']">Title is required</p>
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="mb-1" for="content">Content:</label>
-                    <textarea #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
+                    <textarea [(ngModel)]="addContentValue" #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
                     <div *ngIf="noteForm.get('content')?.errors && (noteForm.get('content')?.touched || content.value.length>0)" class="mt-1 alert alert-danger">
                         <p *ngIf="noteForm.get('content')?.errors?.['required']">Enter some content</p>
                     </div>
@@ -54,14 +54,14 @@
             <form class="mt-2" (ngSubmit)="editNote()" [formGroup]="noteForm">
                 <div class="mb-4">
                     <label class="mb-1" for="title">Title:</label>
-                    <input #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
+                    <input [(ngModel)]="editTitleValue" #title formControlName="title" id="title" class="form-control" type="text" placeholder="Enter title">
                     <div *ngIf="noteForm.get('title')?.errors && (noteForm.get('title')?.touched || title.value.length>0)" class="mt-1 alert alert-danger">
                         <p *ngIf="noteForm.get('title')?.errors?.['required']">Title is required</p>
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="mb-1" for="content">Content:</label>
-                    <textarea #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
+                    <textarea [(ngModel)]="editContentValue" #content formControlName="content" id="content" class="form-control" name="" id="" cols="30" rows="5" placeholder="Enter content"></textarea>
                     <div *ngIf="noteForm.get('content')?.errors && (noteForm.get('content')?.touched || content.value.length>0)" class="mt-1 alert alert-danger">
                         <p *ngIf="noteForm.get('content')?.errors?.['required']">Enter some content</p>
                     </div>
@@ -70,4 +70,6 @@
             </form>
         </div>
     </div>
+
+    
 </section>
